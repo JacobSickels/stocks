@@ -4,12 +4,13 @@ import { getStockSymbols } from "../../core/api/actions";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import Select from "react-select";
+import { history } from "../App";
 
 // TODO: Hookify this!
 
 class Browse extends React.Component {
   state = {
-    value: null,
+    value: "",
     options: []
   };
 
@@ -36,18 +37,21 @@ class Browse extends React.Component {
     this.search && this.search.unsubscribe();
   }
 
-  handleSearchChange = value => {
+  onSearchChange = value =>
     this.setState({ value }, () => this.onSearch$.next(this.state.value));
-  };
+
+  onChange = stock => history.push(`/browse/${stock.value}`);
 
   render() {
     return (
       <>
         <p>Browse</p>
         <Select
-          value={this.state.value}
+          inputValue={this.state.value}
           options={this.state.options}
-          onInputChange={this.handleSearchChange}
+          onInputChange={this.onSearchChange}
+          onChange={this.onChange}
+          onBlur={this.handleBlur}
         />
       </>
     );

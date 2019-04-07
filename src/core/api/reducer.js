@@ -5,6 +5,9 @@ export default (state = {}, action) => {
     case ApiAction.SET_STOCK:
       return { ...state, [action.payload.symbol]: action.payload };
 
+    case ApiAction.SET_STOCK_LOGO:
+      return { ...state, logo: action.payload.url };
+
     case ApiAction.SET_STOCK_SYMBOLS:
       return { ...state, symbols: action.payload };
 

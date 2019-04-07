@@ -12,4 +12,6 @@ const effect$ = new BehaviorSubject(
 export const rootEffect = (action$, state$, services) =>
   effect$.pipe(mergeMap(effect => effect(action$, state$, services)));
 
+export const registerLazyEffect = effect => effect$.next(effect);
+
 export default rootEffect;
