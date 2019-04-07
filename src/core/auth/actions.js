@@ -7,10 +7,7 @@ export const AuthAction = {
 
 export const login = user => ({
   type: AuthAction.LOGIN,
-  payload: {
-    displayName: user.displayName,
-    email: user.email
-  }
+  payload: user
 });
 
 export const signIn = () => ({

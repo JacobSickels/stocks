@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import network from "./network/reducer";
+import auth from "./auth/reducer";
+import stocks from "./api/reducer";
 
 export const rootReducers = {
-  network
+  auth,
+  stocks
 };
 
 const rootReducer = combineReducers(rootReducers);
