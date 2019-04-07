@@ -7,16 +7,15 @@ import { NetworkAction, setNetworkResponse } from "./actions";
 export const getEffect = action$ =>
   action$.pipe(
     filter(action => action.type === NetworkAction.GET),
-    mergeMap(({ payload: { path, successAction } }) => {
-      console.log(successAction);
-      return from(api.get(path)).pipe(
+    mergeMap(({ payload: { path, successAction } }) =>
+      from(api.get(path)).pipe(
         flatMap(response => [
           setNetworkResponse(response.data),
           ...(successAction ? [successAction(response.data)] : [])
         ]),
         catchError(error => console.log(error))
-      );
-    })
+      )
+    )
   );
 
 export default combineEpics(getEffect);

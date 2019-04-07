@@ -15,6 +15,7 @@ const Navigation = ({ signOut }) => {
     <MenuContainer>
       <Menu secondary vertical>
         <Menu.Item as={NavLink} to="/dashboard" name="Dashboard" />
+        <Menu.Item as={NavLink} to="/browse" name="Browse" />
 
         <Dropdown item text="My Account">
           <Dropdown.Menu>
