@@ -1,15 +1,16 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { signOut } from "../../core/auth/actions";
+import { getStock } from "../../core/api/actions";
+import { Button } from "semantic-ui-react";
 
-const Dashboard = ({ signOut }) => (
+const Dashboard = ({ getStock }) => (
   <>
     <p>Dashboard</p>
-    <button onClick={signOut}>Sign out</button>
+    <Button onClick={() => getStock("AAPL")}> Get Stock </Button>
   </>
 );
 
-const mapDispatchToProps = { signOut };
+const mapDispatchToProps = { getStock };
 
 export default connect(
   undefined,
