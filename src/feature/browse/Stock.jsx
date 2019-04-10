@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { getStock } from "../../core/api/actions";
+import { getStock, getStockSeries } from "../../core/api/actions";
 import { connect } from "react-redux";
 import { Async } from "../_shared/Async";
 import { Image, Label, Button, Divider, Grid } from "semantic-ui-react";
 import styled from "styled-components";
 import { Percent } from "../_shared/Percent";
+import { Line } from "react-chartjs-2";
 
 const StyledLabel = styled(Label)`
   padding: 0.35rem !important;
@@ -39,9 +40,15 @@ export const P = styled.p`
   font-size: 16px;
 `;
 
-const Stock = ({ stock, stockId, logo, getStock }) => {
+const Graph = styled.div`
+  margin: 2rem;
+  margin-top: 5rem;
+`;
+
+const Stock = ({ stock, stockId, logo, getStock, getStockSeries, series }) => {
   useEffect(() => {
     getStock(stockId);
+    getStockSeries(stockId);
   }, []);
 
   return (
@@ -79,6 +86,37 @@ const Stock = ({ stock, stockId, logo, getStock }) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+
+      <Graph>
+        <Line
+          width={700}
+          height={300}
+          options={{ aspectRatio: 3, maintainAspectRatio: true }}
+          data={{
+            labels: series && series.map(stamp => stamp.label),
+            datasets: [
+              {
+                label: "High",
+                backgroundColor: "rgba(0,0,0,0.05)",
+                borderColor: "rgba(4,0,255, 0.5)",
+                data: series && series.map(stamp => stamp.high)
+              },
+              {
+                label: "Close",
+                backgroundColor: "rgba(0,0,0,0.05)",
+                borderColor: "rgba(255, 207, 16,0.5)",
+                data: series && series.map(stamp => stamp.close)
+              },
+              {
+                label: "Low",
+                backgroundColor: "rgba(0,0,0,0.05)",
+                borderColor: "rgba(246,0,18,0.5)",
+                data: series && series.map(stamp => stamp.low)
+              }
+            ]
+          }}
+        />
+      </Graph>
     </Async>
   );
 };
@@ -86,10 +124,11 @@ const Stock = ({ stock, stockId, logo, getStock }) => {
 const mapStateToProps = (state, props) => ({
   stockId: props.match.params.id,
   stock: state.stocks[props.match.params.id],
-  logo: state.stocks.logo
+  logo: state.stocks.logo,
+  series: state.stocks.series
 });
 
-const mapDispatchToProps = { getStock };
+const mapDispatchToProps = { getStock, getStockSeries };
 
 export default connect(
   mapStateToProps,

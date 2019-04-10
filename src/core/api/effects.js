@@ -1,6 +1,12 @@
 import { filter, switchMap } from "rxjs/operators";
 import { combineEpics } from "redux-observable";
-import { ApiAction, setStock, setStockSymbols, setStockLogo } from "./actions";
+import {
+  ApiAction,
+  setStock,
+  setStockSymbols,
+  setStockLogo,
+  setStockSeries
+} from "./actions";
 
 import { networkGet } from "../network/actions";
 
@@ -21,4 +27,16 @@ export const getStockSymbolsEffect = action$ =>
     ])
   );
 
-export default combineEpics(getStockEffect, getStockSymbolsEffect);
+export const getStockSeriesEffect = action$ =>
+  action$.pipe(
+    filter(action => action.type === ApiAction.GET_STOCK_SERIES),
+    switchMap(({ payload: { stockId } }) => [
+      networkGet(`/stock/${stockId}/time-series`, setStockSeries)
+    ])
+  );
+
+export default combineEpics(
+  getStockEffect,
+  getStockSymbolsEffect,
+  getStockSeriesEffect
+);

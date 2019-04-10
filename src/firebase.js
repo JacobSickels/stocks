@@ -15,5 +15,6 @@ firebase.initializeApp(config);
 
 // Getting Google Auth Provider for popup on login
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
-export { firebase, googleAuthProvider };
+export { firebase, googleAuthProvider, githubAuthProvider };

@@ -1,7 +1,11 @@
 import { filter, switchMap } from "rxjs/operators";
 import { combineEpics } from "redux-observable";
 import { AuthAction } from "./actions";
-import { firebase, googleAuthProvider } from "../../firebase";
+import {
+  firebase,
+  googleAuthProvider,
+  githubAuthProvider
+} from "../../firebase";
 
 export const loginEffect = action$ =>
   action$.pipe(
