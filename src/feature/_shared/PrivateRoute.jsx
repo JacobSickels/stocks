@@ -17,10 +17,11 @@ const NavContainer = styled.div`
 `;
 
 const ComponentContainer = styled.div`
-  float: left;
   height: 100vh;
   width: calc(100vw - 18rem);
-  padding: 1.75rem;
+  padding: 1.5rem;
+  position: absolute;
+  left: 18rem;
 `;
 
 export const PrivateRoute = ({
