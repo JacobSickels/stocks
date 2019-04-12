@@ -8,7 +8,7 @@ export const setNetworkResponse = response => ({
   payload: { response }
 });
 
-export const networkGet = (path, successAction) => ({
+export const networkGet = (path, params, successAction) => ({
   type: NetworkAction.GET,
-  payload: { path, successAction }
+  payload: { path, params, successAction }
 });

@@ -7,8 +7,8 @@ import { NetworkAction, setNetworkResponse } from "./actions";
 export const getEffect = action$ =>
   action$.pipe(
     filter(action => action.type === NetworkAction.GET),
-    mergeMap(({ payload: { path, successAction } }) =>
-      from(api.get(path)).pipe(
+    mergeMap(({ payload: { path, params, successAction } }) =>
+      from(api.get(path, params)).pipe(
         flatMap(response => [
           setNetworkResponse(response.data),
           ...(successAction ? [successAction(response.data)] : [])

@@ -7,7 +7,7 @@ export const getStockEffect = action$ =>
   action$.pipe(
     filter(action => action.type === ApiAction.GET_STOCK),
     switchMap(({ payload: { stockId } }) => [
-      networkGet(`/stock/${stockId}/quote`, setStock)
+      networkGet(`/stock/${stockId}/quote`, {}, setStock)
     ])
   );
 

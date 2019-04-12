@@ -5,6 +5,7 @@ import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import Select from "react-select";
 import { history } from "../App";
+import Stock from "./Stock";
 
 // TODO: Hookify this!
 
@@ -44,16 +45,13 @@ class Browse extends React.Component {
 
   render() {
     return (
-      <>
-        <p>Browse</p>
-        <Select
-          inputValue={this.state.value}
-          options={this.state.options}
-          onInputChange={this.onSearchChange}
-          onChange={this.onChange}
-          onBlur={this.handleBlur}
-        />
-      </>
+      <Select
+        inputValue={this.state.value}
+        options={this.state.options}
+        onInputChange={this.onSearchChange}
+        onChange={this.onChange}
+        onBlur={this.handleBlur}
+      />
     );
   }
 }

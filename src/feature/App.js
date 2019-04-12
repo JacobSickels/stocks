@@ -8,6 +8,7 @@ import PublicRoute from "./_shared/PublicRoute";
 import PrivateRoute from "./_shared/PrivateRoute";
 import Dashboard from "./dashboard/Dashboard";
 import { Loader } from "semantic-ui-react";
+import Collection from "./collection/Collection";
 
 export const history = createHistory();
 
@@ -26,6 +27,7 @@ class App extends Component {
             </Switch>
           </Suspense>
         </Router>
+        <Collection />
       </Provider>
     );
   }

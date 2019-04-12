@@ -4,9 +4,10 @@ import { mergeMap } from "rxjs/operators";
 import networkEffects from "./network/effects";
 import authEffects from "./auth/effects";
 import apiEffects from "./api/effects";
+import collectionEffects from "./collection/effects";
 
 const effect$ = new BehaviorSubject(
-  combineEpics(networkEffects, authEffects, apiEffects)
+  combineEpics(networkEffects, authEffects, apiEffects, collectionEffects)
 );
 
 export const rootEffect = (action$, state$, services) =>
