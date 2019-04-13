@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Transition, Label, Icon } from "semantic-ui-react";
+import { Button, Transition } from "semantic-ui-react";
 import { connect } from "react-redux";
 import Chip from "./Chip";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   position: fixed;
@@ -54,7 +55,9 @@ const Collection = ({ collection }) => {
               })}
             </Stocks>
           </Transition.Group>
-          <CollectionBtn primary>Create Collection</CollectionBtn>
+          <Link to="/collection/create">
+            <CollectionBtn primary>Create Collection</CollectionBtn>
+          </Link>
         </Container>
       )}
     </Transition.Group>

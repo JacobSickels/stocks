@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getStock, getStockSeries } from "../../core/api/actions";
 import { connect } from "react-redux";
 import { Async } from "../_shared/Async";
-import { Image, Label, Button, Divider, Grid, Header } from "semantic-ui-react";
+import { Label, Button, Divider, Grid, Header } from "semantic-ui-react";
 import styled from "styled-components";
 import { Percent } from "../_shared/Percent";
 import { Line } from "react-chartjs-2";

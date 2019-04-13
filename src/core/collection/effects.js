@@ -1,7 +1,6 @@
 import { filter, switchMap } from "rxjs/operators";
 import { combineEpics } from "redux-observable";
 import { CollectionAction, addToCollection } from "./actions";
-import { firebase } from "../../firebase";
 import { networkGet } from "../network/actions";
 
 export const getCollectionStockEffect = action$ =>

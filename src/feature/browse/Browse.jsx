@@ -5,7 +5,6 @@ import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
 import Select from "react-select";
 import { history } from "../App";
-import Stock from "./Stock";
 
 // TODO: Hookify this!
 

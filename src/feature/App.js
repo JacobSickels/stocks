@@ -13,6 +13,7 @@ import Collection from "./collection/Collection";
 export const history = createHistory();
 
 const AsyncBrowse = React.lazy(() => import("./browse"));
+const AsyncCollection = React.lazy(() => import("./collection"));
 
 class App extends Component {
   render() {
@@ -23,11 +24,12 @@ class App extends Component {
             <Switch>
               <PublicRoute path="/" exact component={Login} />
               <PrivateRoute path="/dashboard" component={Dashboard} />
+              <Route path="/collection" component={AsyncCollection} />
               <Route path="/browse" component={AsyncBrowse} />
             </Switch>
           </Suspense>
+          <Collection />
         </Router>
-        <Collection />
       </Provider>
     );
   }
