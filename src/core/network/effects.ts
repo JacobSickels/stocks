@@ -2,7 +2,7 @@ import { filter, mergeMap, flatMap, catchError } from "rxjs/operators";
 import { combineEpics, Epic } from "redux-observable";
 import { api } from "../api/api";
 import { from } from "rxjs";
-import { setNetworkResponse, networkGet } from "./actions";
+import { setNetworkResponse, networkGet, addSnackbar } from "./actions";
 import { Action } from "redux";
 import { RootState } from "../RootReducer";
 import { isActionOf } from "typesafe-actions";
@@ -18,7 +18,14 @@ export const getEffect: Epic<Action, Action, RootState, any> = action$ =>
         ]),
         catchError(error => {
           console.log("error", error);
-          return [];
+          return [
+            addSnackbar({
+              message: "There was an api error!",
+              options: {
+                variant: "error"
+              }
+            })
+          ];
         })
       )
     )

@@ -6,6 +6,7 @@ import store from "./core/store";
 import { login, logout } from "./core/auth/actions";
 
 import "semantic-ui-css/semantic.min.css";
+import { addSnackbar } from "./core/network/actions";
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {

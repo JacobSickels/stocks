@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { createAction, ActionType } from "typesafe-actions";
+import { resolve } from "path";
 
 type Response = {};
 export const setNetworkResponse = createAction(
@@ -18,9 +19,21 @@ export const networkGet = createAction(
     resolve({ path, params, successAction })
 );
 
+export const addSnackbar = createAction(
+  "[NETWORK] add snackbar",
+  resolve => (snack: any) => resolve({ snack })
+);
+
+export const removeSnackbar = createAction(
+  "[NETWORK] remove snackbar",
+  resolve => (key: string) => resolve({ key })
+);
+
 const networkAction = {
   setNetworkResponse,
-  networkGet
+  networkGet,
+  addSnackbar,
+  removeSnackbar
 };
 
 export type NetworkAction = ActionType<typeof networkAction>;
